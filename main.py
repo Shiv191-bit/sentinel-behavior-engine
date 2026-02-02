@@ -1,3 +1,5 @@
+import argparse
+
 from engine.parser import load_logs
 from engine.features import extract_features
 from model.detector import AnomalyDetector
@@ -5,19 +7,42 @@ from alerts.generator import generate_alert
 
 
 def show_banner():
-    print("=" * 75)
+    print("=" * 80)
     print("DEFENSIVE SECURITY TOOL")
     print("Sentinel Behavior Engine")
     print("Behavioral Intrusion Detection & Analyst Guidance")
     print("Author: Shivam")
-    print("=" * 75)
+    print("=" * 80)
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Behavioral anomaly detection on authentication logs"
+    )
+
+    parser.add_argument(
+        "--logfile",
+        required=True,
+        help="Path to CSV log file"
+    )
+
+    parser.add_argument(
+        "--contamination",
+        type=float,
+        default=0.25,
+        help="Expected anomaly ratio (default: 0.25)"
+    )
+
+    return parser.parse_args()
 
 
 def main():
-    logs = load_logs("data/sample_logs.csv")
+    args = parse_args()
+
+    logs = load_logs(args.logfile)
     features = extract_features(logs)
 
-    detector = AnomalyDetector(contamination=0.25)
+    detector = AnomalyDetector(contamination=args.contamination)
     detector.fit(features)
     results = detector.score(features)
 
@@ -51,7 +76,7 @@ def main():
         else:
             print("Recommended Actions: None")
 
-        print("-" * 50)
+        print("-" * 55)
 
 
 if __name__ == "__main__":
