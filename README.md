@@ -49,23 +49,23 @@ The system prioritizes explainability over black-box detection.
 sentinel-behavior-engine/
 ├── engine/
 │   ├── __init__.py
-│   ├── parser.py          # Log ingestion & normalization
-│   └── features.py        # Behavioral feature extraction
+│   ├── parser.py          
+│   └── features.py        
 │
 ├── model/
 │   ├── __init__.py
-│   └── detector.py        # ML-based anomaly detection engine
+│   └── detector.py       
 │
 ├── alerts/
 │   ├── __init__.py
-│   └── generator.py       # Alert scoring & recommendations
+│   └── generator.py       
 │
 ├── data/
-│   └── sample_logs.csv    # Sample behavioral log dataset
+│   └── sample_logs.csv    
 │
-├── main.py                # Tool entry point (CLI runner)
-├── requirements.txt       # Python dependencies
-└── README.md              # Documentation & usage guide
+├── main.py                
+├── requirements.txt       
+└── README.md              
 
 ---
 
