@@ -5,12 +5,12 @@ from alerts.generator import generate_alert
 
 
 def show_banner():
-    print("=" * 65)
+    print("=" * 70)
     print("DEFENSIVE SECURITY TOOL")
     print("Sentinel Behavior Engine")
-    print("Behavioral Intrusion Detection")
+    print("Behavioral Intrusion Detection & Correlation")
     print("Author: Shivam")
-    print("=" * 65)
+    print("=" * 70)
 
 
 def main():
@@ -22,7 +22,7 @@ def main():
     results = detector.score(features)
 
     print(f"\nLoaded {len(logs)} log entries")
-    print("\n=== Security Alerts ===\n")
+    print("\n=== Correlated Security Alerts ===\n")
 
     for idx, (feature, result) in enumerate(zip(features, results), start=1):
         alert = generate_alert(
@@ -33,6 +33,7 @@ def main():
 
         print(f"Entity #{idx}")
         print(f"Severity: {alert['severity']}")
+        print(f"Confidence: {alert['confidence']}%")
         print(f"Anomaly: {alert['anomaly']}")
         print(f"Score: {alert['score']}")
 
@@ -43,7 +44,7 @@ def main():
         else:
             print("Reasons: None")
 
-        print("-" * 40)
+        print("-" * 45)
 
 
 if __name__ == "__main__":
